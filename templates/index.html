@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>jjk的天气预报小助手</title>
+    <style>
+        body {font-family: Arial,sans-serif;text-align: center;padding:50px;background-color:#f4f4f9;}
+        .container {max-width:500px;margin:auto;background:white;padding:30px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+        input[type="text"]{padding:10px;width:60%;border:1px solid#ddd;border-radius:5px}
+        button {paddind:10px 20px;background-color:#007bff;color:white;border:none;border-radius:5px;cursor:pointer;}
+        button :hover{background-color:#0056b3;}
+        .result{margin-top:20px;padding:15px;border-radius:5px;font-weight:bold;}
+        .success{background-color:#d4edda;color:#155724;}
+        .history{margin-top:30px;text-align:left;font-size:12px;color:#666;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>jjk正在实时观察的天气（可查询）
+            本产品由高德独家播出</h2>
+        <form method="POST">
+            <input type="text" name="city"  placeholder="请输入城市名，如：崇左" required>
+            <button type="submit">查询</button>
+        </form>
+
+        {% if result %}
+            <div class="result scuess">{{ result }}</div>
+        {% endif %}
+
+        {% if error %}
+            <div class="result error">{{error}}</div>
+        {% endif %}
+
+        {% if history%}
+            <div class="history">
+                <h3>最近问过的记录：</h3>
+                <ul>
+                    {% for line in history %}
+                        <li>{{ line }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
