@@ -1,4 +1,4 @@
-from idlelib.mainmenu import menudefs
+
 
 import requests
 
